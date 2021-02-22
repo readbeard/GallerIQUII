@@ -1,8 +1,10 @@
-package com.example.galleriquii
+package com.example.galleriquii.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
+import com.example.galleriquii.model.GalleryImageModel
+import com.example.galleriquii.fragment.DetailedGalleryImageFragment
 
 
 /**

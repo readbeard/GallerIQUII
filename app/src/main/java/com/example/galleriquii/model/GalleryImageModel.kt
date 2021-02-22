@@ -1,4 +1,4 @@
-package com.example.galleriquii
+package com.example.galleriquii.model
 
 import android.os.Parcel
 import android.os.Parcelable

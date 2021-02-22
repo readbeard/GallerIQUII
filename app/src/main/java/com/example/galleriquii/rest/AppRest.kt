@@ -1,4 +1,4 @@
-package com.example.galleriquii
+package com.example.galleriquii.rest
 
 import com.google.gson.*
 import okhttp3.OkHttpClient

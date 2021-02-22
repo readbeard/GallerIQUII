@@ -1,20 +1,17 @@
-package com.example.galleriquii
+package com.example.galleriquii.adapter
 
-import android.R.attr.data
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.webkit.URLUtil
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.example.galleriquii.model.GalleryImageModel
+import com.example.galleriquii.activity.GalleryImageActivity
 import com.example.galleriquii.databinding.GalleryImageItemBinding
-import retrofit2.http.Url
 
 
 class GalleryImageAdapter(

@@ -1,4 +1,4 @@
-package com.example.galleriquii
+package com.example.galleriquii.activity
 
 import android.os.Bundle
 import android.view.Menu
@@ -9,6 +9,10 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.galleriquii.adapter.GalleryImageAdapter
+import com.example.galleriquii.model.GalleryImageModel
+import com.example.galleriquii.viewmodel.GalleryImagesViewModel
+import com.example.galleriquii.R
 
 
 class MainActivity : AppCompatActivity() {

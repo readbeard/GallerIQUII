@@ -1,4 +1,4 @@
-package com.example.galleriquii
+package com.example.galleriquii.fragment
 
 import android.content.res.Configuration
 import android.graphics.Color
@@ -12,6 +12,7 @@ import androidx.core.graphics.BlendModeCompat
 import androidx.fragment.app.Fragment
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
+import com.example.galleriquii.R
 
 
 /**

@@ -1,10 +1,13 @@
-package com.example.galleriquii
+package com.example.galleriquii.activity
 
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
 import androidx.viewpager.widget.ViewPager.OnPageChangeListener
+import com.example.galleriquii.model.GalleryImageModel
+import com.example.galleriquii.R
+import com.example.galleriquii.adapter.SectionsPagerAdapter
 
 
 class GalleryImageActivity : AppCompatActivity() {
