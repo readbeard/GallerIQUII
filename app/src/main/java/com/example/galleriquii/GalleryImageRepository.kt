@@ -4,8 +4,6 @@ import android.util.Log
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.util.concurrent.Executor
-import java.util.concurrent.Executors
 
 object GalleryImageRepository {
     private val TAG = GalleryImageRepository::class.simpleName
@@ -16,9 +14,10 @@ object GalleryImageRepository {
         call.enqueue(object : Callback<RedditResponseDto> {
             override fun onResponse(call: Call<RedditResponseDto>, response: Response<RedditResponseDto>) {
                 val redditResponseDto = response.body() as RedditResponseDto
-                for (children in redditResponseDto.data.children) {
-                    if(children.data.isVideo) continue
-                    Log.e(TAG, children.data.url)
+
+                for (child in redditResponseDto.data?.children.orEmpty()) {
+                    if (child.childData?.isVideo == true) continue
+                    Log.e(TAG, child.childData?.url?: "")
                 }
             }
             override fun onFailure(call: Call<RedditResponseDto>, t: Throwable) {

@@ -1,1262 +1,460 @@
+package com.example.galleriquii
 
-package com.example.galleriquii;
+import com.google.gson.annotations.Expose
+import com.google.gson.annotations.SerializedName
 
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
-
-import java.util.List;
-
-class Child {
-
+internal class Child {
     @SerializedName("kind")
     @Expose
-    private String kind;
+    var kind: String? = null
+
     @SerializedName("data")
     @Expose
-    private ChildrenData data;
-
-    public String getKind() {
-        return kind;
-    }
-
-    public void setKind(String kind) {
-        this.kind = kind;
-    }
-
-    public ChildrenData getData() {
-        return data;
-    }
-
-    public void setData(ChildrenData data) {
-        this.data = data;
-    }
-
+    var childData: ChildrenData? = null
 }
 
-class Data {
-
+internal class Data {
     @SerializedName("modhash")
     @Expose
-    private String modhash;
+    var modhash: String? = null
+
     @SerializedName("dist")
     @Expose
-    private Integer dist;
+    var dist: Int? = null
+
     @SerializedName("children")
     @Expose
-    private List<Child> children = null;
+    var children: List<Child>? = null
+
     @SerializedName("after")
     @Expose
-    private Object after;
+    var after: Any? = null
+
     @SerializedName("before")
     @Expose
-    private Object before;
-
-    public String getModhash() {
-        return modhash;
-    }
-
-    public void setModhash(String modhash) {
-        this.modhash = modhash;
-    }
-
-    public Integer getDist() {
-        return dist;
-    }
-
-    public void setDist(Integer dist) {
-        this.dist = dist;
-    }
-
-    public List<Child> getChildren() {
-        return children;
-    }
-
-    public void setChildren(List<Child> children) {
-        this.children = children;
-    }
-
-    public Object getAfter() {
-        return after;
-    }
-
-    public void setAfter(Object after) {
-        this.after = after;
-    }
-
-    public Object getBefore() {
-        return before;
-    }
-
-    public void setBefore(Object before) {
-        this.before = before;
-    }
-
+    var before: Any? = null
 }
 
-class ChildrenData {
+internal class ChildrenData {
     @SerializedName("approved_at_utc")
     @Expose
-    private Object approvedAtUtc;
+    var approvedAtUtc: Any? = null
+
     @SerializedName("subreddit")
     @Expose
-    private String subreddit;
+    var subreddit: String? = null
+
     @SerializedName("selftext")
     @Expose
-    private String selftext;
+    var selftext: String? = null
+
     @SerializedName("author_fullname")
     @Expose
-    private String authorFullname;
+    var authorFullname: String? = null
+
     @SerializedName("saved")
     @Expose
-    private Boolean saved;
+    var saved: Boolean? = null
+
     @SerializedName("mod_reason_title")
     @Expose
-    private Object modReasonTitle;
+    var modReasonTitle: Any? = null
+
     @SerializedName("gilded")
     @Expose
-    private Integer gilded;
+    var gilded: Int? = null
+
     @SerializedName("clicked")
     @Expose
-    private Boolean clicked;
+    var clicked: Boolean? = null
+
     @SerializedName("title")
     @Expose
-    private String title;
+    var title: String? = null
+
     @SerializedName("link_flair_richtext")
     @Expose
-    private List<Object> linkFlairRichtext = null;
+    var linkFlairRichtext: List<Any>? = null
+
     @SerializedName("subreddit_name_prefixed")
     @Expose
-    private String subredditNamePrefixed;
+    var subredditNamePrefixed: String? = null
+
     @SerializedName("hidden")
     @Expose
-    private Boolean hidden;
+    var hidden: Boolean? = null
+
     @SerializedName("pwls")
     @Expose
-    private Object pwls;
+    var pwls: Any? = null
+
     @SerializedName("link_flair_css_class")
     @Expose
-    private Object linkFlairCssClass;
+    var linkFlairCssClass: Any? = null
+
     @SerializedName("downs")
     @Expose
-    private Integer downs;
+    var downs: Int? = null
+
     @SerializedName("top_awarded_type")
     @Expose
-    private Object topAwardedType;
+    var topAwardedType: Any? = null
+
     @SerializedName("hide_score")
     @Expose
-    private Boolean hideScore;
+    var hideScore: Boolean? = null
+
     @SerializedName("name")
     @Expose
-    private String name;
+    var name: String? = null
+
     @SerializedName("quarantine")
     @Expose
-    private Boolean quarantine;
+    var quarantine: Boolean? = null
+
     @SerializedName("link_flair_text_color")
     @Expose
-    private String linkFlairTextColor;
+    var linkFlairTextColor: String? = null
+
     @SerializedName("upvote_ratio")
     @Expose
-    private Double upvoteRatio;
+    var upvoteRatio: Double? = null
+
     @SerializedName("author_flair_background_color")
     @Expose
-    private Object authorFlairBackgroundColor;
+    var authorFlairBackgroundColor: Any? = null
+
     @SerializedName("subreddit_type")
     @Expose
-    private String subredditType;
+    var subredditType: String? = null
+
     @SerializedName("ups")
     @Expose
-    private Integer ups;
+    var ups: Int? = null
+
     @SerializedName("total_awards_received")
     @Expose
-    private Integer totalAwardsReceived;
+    var totalAwardsReceived: Int? = null
+
     @SerializedName("media_embed")
     @Expose
-    private MediaEmbed mediaEmbed;
+    var mediaEmbed: MediaEmbed? = null
+
     @SerializedName("author_flair_template_id")
     @Expose
-    private Object authorFlairTemplateId;
+    var authorFlairTemplateId: Any? = null
+
     @SerializedName("is_original_content")
     @Expose
-    private Boolean isOriginalContent;
+    var isOriginalContent: Boolean? = null
+
     @SerializedName("user_reports")
     @Expose
-    private List<Object> userReports = null;
+    var userReports: List<Any>? = null
+
     @SerializedName("secure_media")
     @Expose
-    private Object secureMedia;
+    var secureMedia: Any? = null
+
     @SerializedName("is_reddit_media_domain")
     @Expose
-    private Boolean isRedditMediaDomain;
+    var isRedditMediaDomain: Boolean? = null
+
     @SerializedName("is_meta")
     @Expose
-    private Boolean isMeta;
+    var isMeta: Boolean? = null
+
     @SerializedName("category")
     @Expose
-    private Object category;
+    var category: Any? = null
+
     @SerializedName("secure_media_embed")
     @Expose
-    private SecureMediaEmbed secureMediaEmbed;
+    var secureMediaEmbed: SecureMediaEmbed? = null
+
     @SerializedName("link_flair_text")
     @Expose
-    private Object linkFlairText;
+    var linkFlairText: Any? = null
+
     @SerializedName("can_mod_post")
     @Expose
-    private Boolean canModPost;
+    var canModPost: Boolean? = null
+
     @SerializedName("score")
     @Expose
-    private Integer score;
+    var score: Int? = null
+
     @SerializedName("approved_by")
     @Expose
-    private Object approvedBy;
+    var approvedBy: Any? = null
+
     @SerializedName("author_premium")
     @Expose
-    private Boolean authorPremium;
+    var authorPremium: Boolean? = null
+
     @SerializedName("thumbnail")
     @Expose
-    private String thumbnail;
+    var thumbnail: String? = null
+
     @SerializedName("edited")
     @Expose
-    private Boolean edited;
+    var edited: Boolean? = null
+
     @SerializedName("author_flair_css_class")
     @Expose
-    private Object authorFlairCssClass;
+    var authorFlairCssClass: Any? = null
+
     @SerializedName("author_flair_richtext")
     @Expose
-    private List<Object> authorFlairRichtext = null;
+    var authorFlairRichtext: List<Any>? = null
+
     @SerializedName("gildings")
     @Expose
-    private Gildings gildings;
+    var gildings: Gildings? = null
+
     @SerializedName("content_categories")
     @Expose
-    private Object contentCategories;
+    var contentCategories: Any? = null
+
     @SerializedName("is_self")
     @Expose
-    private Boolean isSelf;
+    var isSelf: Boolean? = null
+
     @SerializedName("mod_note")
     @Expose
-    private Object modNote;
+    var modNote: Any? = null
+
     @SerializedName("created")
     @Expose
-    private Integer created;
+    var created: Int? = null
+
     @SerializedName("link_flair_type")
     @Expose
-    private String linkFlairType;
+    var linkFlairType: String? = null
+
     @SerializedName("wls")
     @Expose
-    private Object wls;
+    var wls: Any? = null
+
     @SerializedName("removed_by_category")
     @Expose
-    private Object removedByCategory;
+    var removedByCategory: Any? = null
+
     @SerializedName("banned_by")
     @Expose
-    private Object bannedBy;
+    var bannedBy: Any? = null
+
     @SerializedName("author_flair_type")
     @Expose
-    private String authorFlairType;
+    var authorFlairType: String? = null
+
     @SerializedName("domain")
     @Expose
-    private String domain;
+    var domain: String? = null
+
     @SerializedName("allow_live_comments")
     @Expose
-    private Boolean allowLiveComments;
+    var allowLiveComments: Boolean? = null
+
     @SerializedName("selftext_html")
     @Expose
-    private String selftextHtml;
+    var selftextHtml: String? = null
+
     @SerializedName("likes")
     @Expose
-    private Object likes;
+    var likes: Any? = null
+
     @SerializedName("suggested_sort")
     @Expose
-    private Object suggestedSort;
+    var suggestedSort: Any? = null
+
     @SerializedName("banned_at_utc")
     @Expose
-    private Object bannedAtUtc;
+    var bannedAtUtc: Any? = null
+
     @SerializedName("view_count")
     @Expose
-    private Object viewCount;
+    var viewCount: Any? = null
+
     @SerializedName("archived")
     @Expose
-    private Boolean archived;
+    var archived: Boolean? = null
+
     @SerializedName("no_follow")
     @Expose
-    private Boolean noFollow;
+    var noFollow: Boolean? = null
+
     @SerializedName("is_crosspostable")
     @Expose
-    private Boolean isCrosspostable;
+    var isCrosspostable: Boolean? = null
+
     @SerializedName("pinned")
     @Expose
-    private Boolean pinned;
+    var pinned: Boolean? = null
+
     @SerializedName("over_18")
     @Expose
-    private Boolean over18;
+    var over18: Boolean? = null
+
     @SerializedName("all_awardings")
     @Expose
-    private List<Object> allAwardings = null;
+    var allAwardings: List<Any>? = null
+
     @SerializedName("awarders")
     @Expose
-    private List<Object> awarders = null;
+    var awarders: List<Any>? = null
+
     @SerializedName("media_only")
     @Expose
-    private Boolean mediaOnly;
+    var mediaOnly: Boolean? = null
+
     @SerializedName("can_gild")
     @Expose
-    private Boolean canGild;
+    var canGild: Boolean? = null
+
     @SerializedName("spoiler")
     @Expose
-    private Boolean spoiler;
+    var spoiler: Boolean? = null
+
     @SerializedName("locked")
     @Expose
-    private Boolean locked;
+    var locked: Boolean? = null
+
     @SerializedName("author_flair_text")
     @Expose
-    private Object authorFlairText;
+    var authorFlairText: Any? = null
+
     @SerializedName("treatment_tags")
     @Expose
-    private List<Object> treatmentTags = null;
+    var treatmentTags: List<Any>? = null
+
     @SerializedName("visited")
     @Expose
-    private Boolean visited;
+    var visited: Boolean? = null
+
     @SerializedName("removed_by")
     @Expose
-    private Object removedBy;
+    var removedBy: Any? = null
+
     @SerializedName("num_reports")
     @Expose
-    private Object numReports;
+    var numReports: Any? = null
+
     @SerializedName("distinguished")
     @Expose
-    private Object distinguished;
+    var distinguished: Any? = null
+
     @SerializedName("subreddit_id")
     @Expose
-    private String subredditId;
+    var subredditId: String? = null
+
     @SerializedName("mod_reason_by")
     @Expose
-    private Object modReasonBy;
+    var modReasonBy: Any? = null
+
     @SerializedName("removal_reason")
     @Expose
-    private Object removalReason;
+    var removalReason: Any? = null
+
     @SerializedName("link_flair_background_color")
     @Expose
-    private String linkFlairBackgroundColor;
+    var linkFlairBackgroundColor: String? = null
+
     @SerializedName("id")
     @Expose
-    private String id;
+    var id: String? = null
+
     @SerializedName("is_robot_indexable")
     @Expose
-    private Boolean isRobotIndexable;
+    var isRobotIndexable: Boolean? = null
+
     @SerializedName("report_reasons")
     @Expose
-    private Object reportReasons;
+    var reportReasons: Any? = null
+
     @SerializedName("author")
     @Expose
-    private String author;
+    var author: String? = null
+
     @SerializedName("discussion_type")
     @Expose
-    private Object discussionType;
+    var discussionType: Any? = null
+
     @SerializedName("num_comments")
     @Expose
-    private Integer numComments;
+    var numComments: Int? = null
+
     @SerializedName("send_replies")
     @Expose
-    private Boolean sendReplies;
+    var sendReplies: Boolean? = null
+
     @SerializedName("whitelist_status")
     @Expose
-    private Object whitelistStatus;
+    var whitelistStatus: Any? = null
+
     @SerializedName("contest_mode")
     @Expose
-    private Boolean contestMode;
+    var contestMode: Boolean? = null
+
     @SerializedName("mod_reports")
     @Expose
-    private List<Object> modReports = null;
+    var modReports: List<Any>? = null
+
     @SerializedName("author_patreon_flair")
     @Expose
-    private Boolean authorPatreonFlair;
+    var authorPatreonFlair: Boolean? = null
+
     @SerializedName("author_flair_text_color")
     @Expose
-    private Object authorFlairTextColor;
+    var authorFlairTextColor: Any? = null
+
     @SerializedName("permalink")
     @Expose
-    private String permalink;
+    var permalink: String? = null
+
     @SerializedName("parent_whitelist_status")
     @Expose
-    private Object parentWhitelistStatus;
+    var parentWhitelistStatus: Any? = null
+
     @SerializedName("stickied")
     @Expose
-    private Boolean stickied;
+    var stickied: Boolean? = null
+
     @SerializedName("url")
     @Expose
-    private String url;
+    var url: String? = null
+
     @SerializedName("subreddit_subscribers")
     @Expose
-    private Integer subredditSubscribers;
+    var subredditSubscribers: Int? = null
+
     @SerializedName("created_utc")
     @Expose
-    private Integer createdUtc;
+    var createdUtc: Int? = null
+
     @SerializedName("num_crossposts")
     @Expose
-    private Integer numCrossposts;
+    var numCrossposts: Int? = null
+
     @SerializedName("media")
     @Expose
-    private Object media;
+    var media: Any? = null
+
     @SerializedName("is_video")
     @Expose
-    private Boolean isVideo;
-
-    public Object getApprovedAtUtc() {
-        return approvedAtUtc;
-    }
-
-    public void setApprovedAtUtc(Object approvedAtUtc) {
-        this.approvedAtUtc = approvedAtUtc;
-    }
-
-    public String getSubreddit() {
-        return subreddit;
-    }
-
-    public void setSubreddit(String subreddit) {
-        this.subreddit = subreddit;
-    }
-
-    public String getSelftext() {
-        return selftext;
-    }
-
-    public void setSelftext(String selftext) {
-        this.selftext = selftext;
-    }
-
-    public String getAuthorFullname() {
-        return authorFullname;
-    }
-
-    public void setAuthorFullname(String authorFullname) {
-        this.authorFullname = authorFullname;
-    }
-
-    public Boolean getSaved() {
-        return saved;
-    }
-
-    public void setSaved(Boolean saved) {
-        this.saved = saved;
-    }
-
-    public Object getModReasonTitle() {
-        return modReasonTitle;
-    }
-
-    public void setModReasonTitle(Object modReasonTitle) {
-        this.modReasonTitle = modReasonTitle;
-    }
-
-    public Integer getGilded() {
-        return gilded;
-    }
-
-    public void setGilded(Integer gilded) {
-        this.gilded = gilded;
-    }
-
-    public Boolean getClicked() {
-        return clicked;
-    }
-
-    public void setClicked(Boolean clicked) {
-        this.clicked = clicked;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public List<Object> getLinkFlairRichtext() {
-        return linkFlairRichtext;
-    }
-
-    public void setLinkFlairRichtext(List<Object> linkFlairRichtext) {
-        this.linkFlairRichtext = linkFlairRichtext;
-    }
-
-    public String getSubredditNamePrefixed() {
-        return subredditNamePrefixed;
-    }
-
-    public void setSubredditNamePrefixed(String subredditNamePrefixed) {
-        this.subredditNamePrefixed = subredditNamePrefixed;
-    }
-
-    public Boolean getHidden() {
-        return hidden;
-    }
-
-    public void setHidden(Boolean hidden) {
-        this.hidden = hidden;
-    }
-
-    public Object getPwls() {
-        return pwls;
-    }
-
-    public void setPwls(Object pwls) {
-        this.pwls = pwls;
-    }
-
-    public Object getLinkFlairCssClass() {
-        return linkFlairCssClass;
-    }
-
-    public void setLinkFlairCssClass(Object linkFlairCssClass) {
-        this.linkFlairCssClass = linkFlairCssClass;
-    }
-
-    public Integer getDowns() {
-        return downs;
-    }
-
-    public void setDowns(Integer downs) {
-        this.downs = downs;
-    }
-
-    public Object getTopAwardedType() {
-        return topAwardedType;
-    }
-
-    public void setTopAwardedType(Object topAwardedType) {
-        this.topAwardedType = topAwardedType;
-    }
-
-    public Boolean getHideScore() {
-        return hideScore;
-    }
-
-    public void setHideScore(Boolean hideScore) {
-        this.hideScore = hideScore;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Boolean getQuarantine() {
-        return quarantine;
-    }
-
-    public void setQuarantine(Boolean quarantine) {
-        this.quarantine = quarantine;
-    }
-
-    public String getLinkFlairTextColor() {
-        return linkFlairTextColor;
-    }
-
-    public void setLinkFlairTextColor(String linkFlairTextColor) {
-        this.linkFlairTextColor = linkFlairTextColor;
-    }
-
-    public Double getUpvoteRatio() {
-        return upvoteRatio;
-    }
-
-    public void setUpvoteRatio(Double upvoteRatio) {
-        this.upvoteRatio = upvoteRatio;
-    }
-
-    public Object getAuthorFlairBackgroundColor() {
-        return authorFlairBackgroundColor;
-    }
-
-    public void setAuthorFlairBackgroundColor(Object authorFlairBackgroundColor) {
-        this.authorFlairBackgroundColor = authorFlairBackgroundColor;
-    }
-
-    public String getSubredditType() {
-        return subredditType;
-    }
-
-    public void setSubredditType(String subredditType) {
-        this.subredditType = subredditType;
-    }
-
-    public Integer getUps() {
-        return ups;
-    }
-
-    public void setUps(Integer ups) {
-        this.ups = ups;
-    }
-
-    public Integer getTotalAwardsReceived() {
-        return totalAwardsReceived;
-    }
-
-    public void setTotalAwardsReceived(Integer totalAwardsReceived) {
-        this.totalAwardsReceived = totalAwardsReceived;
-    }
-
-    public MediaEmbed getMediaEmbed() {
-        return mediaEmbed;
-    }
-
-    public void setMediaEmbed(MediaEmbed mediaEmbed) {
-        this.mediaEmbed = mediaEmbed;
-    }
-
-    public Object getAuthorFlairTemplateId() {
-        return authorFlairTemplateId;
-    }
-
-    public void setAuthorFlairTemplateId(Object authorFlairTemplateId) {
-        this.authorFlairTemplateId = authorFlairTemplateId;
-    }
-
-    public Boolean getIsOriginalContent() {
-        return isOriginalContent;
-    }
-
-    public void setIsOriginalContent(Boolean isOriginalContent) {
-        this.isOriginalContent = isOriginalContent;
-    }
-
-    public List<Object> getUserReports() {
-        return userReports;
-    }
-
-    public void setUserReports(List<Object> userReports) {
-        this.userReports = userReports;
-    }
-
-    public Object getSecureMedia() {
-        return secureMedia;
-    }
-
-    public void setSecureMedia(Object secureMedia) {
-        this.secureMedia = secureMedia;
-    }
-
-    public Boolean getIsRedditMediaDomain() {
-        return isRedditMediaDomain;
-    }
-
-    public void setIsRedditMediaDomain(Boolean isRedditMediaDomain) {
-        this.isRedditMediaDomain = isRedditMediaDomain;
-    }
-
-    public Boolean getIsMeta() {
-        return isMeta;
-    }
-
-    public void setIsMeta(Boolean isMeta) {
-        this.isMeta = isMeta;
-    }
-
-    public Object getCategory() {
-        return category;
-    }
-
-    public void setCategory(Object category) {
-        this.category = category;
-    }
-
-    public SecureMediaEmbed getSecureMediaEmbed() {
-        return secureMediaEmbed;
-    }
-
-    public void setSecureMediaEmbed(SecureMediaEmbed secureMediaEmbed) {
-        this.secureMediaEmbed = secureMediaEmbed;
-    }
-
-    public Object getLinkFlairText() {
-        return linkFlairText;
-    }
-
-    public void setLinkFlairText(Object linkFlairText) {
-        this.linkFlairText = linkFlairText;
-    }
-
-    public Boolean getCanModPost() {
-        return canModPost;
-    }
-
-    public void setCanModPost(Boolean canModPost) {
-        this.canModPost = canModPost;
-    }
-
-    public Integer getScore() {
-        return score;
-    }
-
-    public void setScore(Integer score) {
-        this.score = score;
-    }
-
-    public Object getApprovedBy() {
-        return approvedBy;
-    }
-
-    public void setApprovedBy(Object approvedBy) {
-        this.approvedBy = approvedBy;
-    }
-
-    public Boolean getAuthorPremium() {
-        return authorPremium;
-    }
-
-    public void setAuthorPremium(Boolean authorPremium) {
-        this.authorPremium = authorPremium;
-    }
-
-    public String getThumbnail() {
-        return thumbnail;
-    }
-
-    public void setThumbnail(String thumbnail) {
-        this.thumbnail = thumbnail;
-    }
-
-    public Boolean getEdited() {
-        return edited;
-    }
-
-    public void setEdited(Boolean edited) {
-        this.edited = edited;
-    }
-
-    public Object getAuthorFlairCssClass() {
-        return authorFlairCssClass;
-    }
-
-    public void setAuthorFlairCssClass(Object authorFlairCssClass) {
-        this.authorFlairCssClass = authorFlairCssClass;
-    }
-
-    public List<Object> getAuthorFlairRichtext() {
-        return authorFlairRichtext;
-    }
-
-    public void setAuthorFlairRichtext(List<Object> authorFlairRichtext) {
-        this.authorFlairRichtext = authorFlairRichtext;
-    }
-
-    public Gildings getGildings() {
-        return gildings;
-    }
-
-    public void setGildings(Gildings gildings) {
-        this.gildings = gildings;
-    }
-
-    public Object getContentCategories() {
-        return contentCategories;
-    }
-
-    public void setContentCategories(Object contentCategories) {
-        this.contentCategories = contentCategories;
-    }
-
-    public Boolean getIsSelf() {
-        return isSelf;
-    }
-
-    public void setIsSelf(Boolean isSelf) {
-        this.isSelf = isSelf;
-    }
-
-    public Object getModNote() {
-        return modNote;
-    }
-
-    public void setModNote(Object modNote) {
-        this.modNote = modNote;
-    }
-
-    public Integer getCreated() {
-        return created;
-    }
-
-    public void setCreated(Integer created) {
-        this.created = created;
-    }
-
-    public String getLinkFlairType() {
-        return linkFlairType;
-    }
-
-    public void setLinkFlairType(String linkFlairType) {
-        this.linkFlairType = linkFlairType;
-    }
-
-    public Object getWls() {
-        return wls;
-    }
-
-    public void setWls(Object wls) {
-        this.wls = wls;
-    }
-
-    public Object getRemovedByCategory() {
-        return removedByCategory;
-    }
-
-    public void setRemovedByCategory(Object removedByCategory) {
-        this.removedByCategory = removedByCategory;
-    }
-
-    public Object getBannedBy() {
-        return bannedBy;
-    }
-
-    public void setBannedBy(Object bannedBy) {
-        this.bannedBy = bannedBy;
-    }
-
-    public String getAuthorFlairType() {
-        return authorFlairType;
-    }
-
-    public void setAuthorFlairType(String authorFlairType) {
-        this.authorFlairType = authorFlairType;
-    }
-
-    public String getDomain() {
-        return domain;
-    }
-
-    public void setDomain(String domain) {
-        this.domain = domain;
-    }
-
-    public Boolean getAllowLiveComments() {
-        return allowLiveComments;
-    }
-
-    public void setAllowLiveComments(Boolean allowLiveComments) {
-        this.allowLiveComments = allowLiveComments;
-    }
-
-    public String getSelftextHtml() {
-        return selftextHtml;
-    }
-
-    public void setSelftextHtml(String selftextHtml) {
-        this.selftextHtml = selftextHtml;
-    }
-
-    public Object getLikes() {
-        return likes;
-    }
-
-    public void setLikes(Object likes) {
-        this.likes = likes;
-    }
-
-    public Object getSuggestedSort() {
-        return suggestedSort;
-    }
-
-    public void setSuggestedSort(Object suggestedSort) {
-        this.suggestedSort = suggestedSort;
-    }
-
-    public Object getBannedAtUtc() {
-        return bannedAtUtc;
-    }
-
-    public void setBannedAtUtc(Object bannedAtUtc) {
-        this.bannedAtUtc = bannedAtUtc;
-    }
-
-    public Object getViewCount() {
-        return viewCount;
-    }
-
-    public void setViewCount(Object viewCount) {
-        this.viewCount = viewCount;
-    }
-
-    public Boolean getArchived() {
-        return archived;
-    }
-
-    public void setArchived(Boolean archived) {
-        this.archived = archived;
-    }
-
-    public Boolean getNoFollow() {
-        return noFollow;
-    }
-
-    public void setNoFollow(Boolean noFollow) {
-        this.noFollow = noFollow;
-    }
-
-    public Boolean getIsCrosspostable() {
-        return isCrosspostable;
-    }
-
-    public void setIsCrosspostable(Boolean isCrosspostable) {
-        this.isCrosspostable = isCrosspostable;
-    }
-
-    public Boolean getPinned() {
-        return pinned;
-    }
-
-    public void setPinned(Boolean pinned) {
-        this.pinned = pinned;
-    }
-
-    public Boolean getOver18() {
-        return over18;
-    }
-
-    public void setOver18(Boolean over18) {
-        this.over18 = over18;
-    }
-
-    public List<Object> getAllAwardings() {
-        return allAwardings;
-    }
-
-    public void setAllAwardings(List<Object> allAwardings) {
-        this.allAwardings = allAwardings;
-    }
-
-    public List<Object> getAwarders() {
-        return awarders;
-    }
-
-    public void setAwarders(List<Object> awarders) {
-        this.awarders = awarders;
-    }
-
-    public Boolean getMediaOnly() {
-        return mediaOnly;
-    }
-
-    public void setMediaOnly(Boolean mediaOnly) {
-        this.mediaOnly = mediaOnly;
-    }
-
-    public Boolean getCanGild() {
-        return canGild;
-    }
-
-    public void setCanGild(Boolean canGild) {
-        this.canGild = canGild;
-    }
-
-    public Boolean getSpoiler() {
-        return spoiler;
-    }
-
-    public void setSpoiler(Boolean spoiler) {
-        this.spoiler = spoiler;
-    }
-
-    public Boolean getLocked() {
-        return locked;
-    }
-
-    public void setLocked(Boolean locked) {
-        this.locked = locked;
-    }
-
-    public Object getAuthorFlairText() {
-        return authorFlairText;
-    }
-
-    public void setAuthorFlairText(Object authorFlairText) {
-        this.authorFlairText = authorFlairText;
-    }
-
-    public List<Object> getTreatmentTags() {
-        return treatmentTags;
-    }
-
-    public void setTreatmentTags(List<Object> treatmentTags) {
-        this.treatmentTags = treatmentTags;
-    }
-
-    public Boolean getVisited() {
-        return visited;
-    }
-
-    public void setVisited(Boolean visited) {
-        this.visited = visited;
-    }
-
-    public Object getRemovedBy() {
-        return removedBy;
-    }
-
-    public void setRemovedBy(Object removedBy) {
-        this.removedBy = removedBy;
-    }
-
-    public Object getNumReports() {
-        return numReports;
-    }
-
-    public void setNumReports(Object numReports) {
-        this.numReports = numReports;
-    }
-
-    public Object getDistinguished() {
-        return distinguished;
-    }
-
-    public void setDistinguished(Object distinguished) {
-        this.distinguished = distinguished;
-    }
-
-    public String getSubredditId() {
-        return subredditId;
-    }
-
-    public void setSubredditId(String subredditId) {
-        this.subredditId = subredditId;
-    }
-
-    public Object getModReasonBy() {
-        return modReasonBy;
-    }
-
-    public void setModReasonBy(Object modReasonBy) {
-        this.modReasonBy = modReasonBy;
-    }
-
-    public Object getRemovalReason() {
-        return removalReason;
-    }
-
-    public void setRemovalReason(Object removalReason) {
-        this.removalReason = removalReason;
-    }
-
-    public String getLinkFlairBackgroundColor() {
-        return linkFlairBackgroundColor;
-    }
-
-    public void setLinkFlairBackgroundColor(String linkFlairBackgroundColor) {
-        this.linkFlairBackgroundColor = linkFlairBackgroundColor;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public Boolean getIsRobotIndexable() {
-        return isRobotIndexable;
-    }
-
-    public void setIsRobotIndexable(Boolean isRobotIndexable) {
-        this.isRobotIndexable = isRobotIndexable;
-    }
-
-    public Object getReportReasons() {
-        return reportReasons;
-    }
-
-    public void setReportReasons(Object reportReasons) {
-        this.reportReasons = reportReasons;
-    }
-
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-
-    public Object getDiscussionType() {
-        return discussionType;
-    }
-
-    public void setDiscussionType(Object discussionType) {
-        this.discussionType = discussionType;
-    }
-
-    public Integer getNumComments() {
-        return numComments;
-    }
-
-    public void setNumComments(Integer numComments) {
-        this.numComments = numComments;
-    }
-
-    public Boolean getSendReplies() {
-        return sendReplies;
-    }
-
-    public void setSendReplies(Boolean sendReplies) {
-        this.sendReplies = sendReplies;
-    }
-
-    public Object getWhitelistStatus() {
-        return whitelistStatus;
-    }
-
-    public void setWhitelistStatus(Object whitelistStatus) {
-        this.whitelistStatus = whitelistStatus;
-    }
-
-    public Boolean getContestMode() {
-        return contestMode;
-    }
-
-    public void setContestMode(Boolean contestMode) {
-        this.contestMode = contestMode;
-    }
-
-    public List<Object> getModReports() {
-        return modReports;
-    }
-
-    public void setModReports(List<Object> modReports) {
-        this.modReports = modReports;
-    }
-
-    public Boolean getAuthorPatreonFlair() {
-        return authorPatreonFlair;
-    }
-
-    public void setAuthorPatreonFlair(Boolean authorPatreonFlair) {
-        this.authorPatreonFlair = authorPatreonFlair;
-    }
-
-    public Object getAuthorFlairTextColor() {
-        return authorFlairTextColor;
-    }
-
-    public void setAuthorFlairTextColor(Object authorFlairTextColor) {
-        this.authorFlairTextColor = authorFlairTextColor;
-    }
-
-    public String getPermalink() {
-        return permalink;
-    }
-
-    public void setPermalink(String permalink) {
-        this.permalink = permalink;
-    }
-
-    public Object getParentWhitelistStatus() {
-        return parentWhitelistStatus;
-    }
-
-    public void setParentWhitelistStatus(Object parentWhitelistStatus) {
-        this.parentWhitelistStatus = parentWhitelistStatus;
-    }
-
-    public Boolean getStickied() {
-        return stickied;
-    }
-
-    public void setStickied(Boolean stickied) {
-        this.stickied = stickied;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    public Integer getSubredditSubscribers() {
-        return subredditSubscribers;
-    }
-
-    public void setSubredditSubscribers(Integer subredditSubscribers) {
-        this.subredditSubscribers = subredditSubscribers;
-    }
-
-    public Integer getCreatedUtc() {
-        return createdUtc;
-    }
-
-    public void setCreatedUtc(Integer createdUtc) {
-        this.createdUtc = createdUtc;
-    }
-
-    public Integer getNumCrossposts() {
-        return numCrossposts;
-    }
-
-    public void setNumCrossposts(Integer numCrossposts) {
-        this.numCrossposts = numCrossposts;
-    }
-
-    public Object getMedia() {
-        return media;
-    }
-
-    public void setMedia(Object media) {
-        this.media = media;
-    }
-
-    public Boolean getIsVideo() {
-        return isVideo;
-    }
-
-    public void setIsVideo(Boolean isVideo) {
-        this.isVideo = isVideo;
-    }
-
+    var isVideo: Boolean = false
 }
 
-class Gildings {
-
-
-}
-
-class MediaEmbed {
-
-
-}
-
-public class RedditResponseDto {
-
+internal class Gildings
+internal class MediaEmbed
+class RedditResponseDto {
     @SerializedName("kind")
     @Expose
-    private String kind;
+    var kind: String? = null
+
     @SerializedName("data")
     @Expose
-    private Data data;
-
-    public String getKind() {
-        return kind;
-    }
-
-    public void setKind(String kind) {
-        this.kind = kind;
-    }
-
-    public Data getData() {
-        return data;
-    }
-
-    public void setData(Data data) {
-        this.data = data;
-    }
-
+    internal var data: Data? = null
 }
 
-class SecureMediaEmbed {
-
-
-}
+internal class SecureMediaEmbed 
