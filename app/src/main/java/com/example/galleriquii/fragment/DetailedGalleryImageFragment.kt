@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
 import com.example.galleriquii.R
+import com.example.galleriquii.TouchImageView
 
 
 /**
@@ -39,7 +40,7 @@ class DetailedGalleryImageFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val rootView: View = inflater.inflate(R.layout.fragment_gallery_image, container, false)
-        val imageView: ImageView = rootView.findViewById(R.id.detail_image) as ImageView
+        val imageView: TouchImageView = rootView.findViewById(R.id.detail_image)
         val darkModeEnabled = context?.resources?.configuration?.uiMode?.and(Configuration.UI_MODE_NIGHT_MASK)?.equals(Configuration.UI_MODE_NIGHT_YES)?: false
 
         val circularProgressDrawable = CircularProgressDrawable(requireActivity())
