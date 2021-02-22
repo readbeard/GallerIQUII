@@ -19,23 +19,22 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(findViewById(R.id.toolbar))
-        val mAdapter = GalleryImageAdapter(data,  this)
+        val mAdapter = GalleryImageAdapter(data, this)
 
         mainActivityViewModel = ViewModelProvider(this).get(GalleryImagesViewModel::class.java)
 
-        mainActivityViewModel.getUrlList("dog").observe(this, Observer {
-            for (i in it.indices) {
-                val imageModel = GalleryImageModel("Image $i", it[i])
-                data.add(imageModel)
-            }
-            mAdapter.notifyDataSetChanged()
-        })
+        mainActivityViewModel.getGalleryImageList("bottle")
+            .observe(this, Observer { galleryImageModelList ->
+                galleryImageModelList.forEach {
+                    data.add(it)
+                }
+                mAdapter.notifyDataSetChanged()
+            })
 
         val mRecyclerView = findViewById<View>(R.id.list) as RecyclerView
         mRecyclerView.layoutManager = GridLayoutManager(this, 3)
         mRecyclerView.setHasFixedSize(true) // Helps improve performance
         mRecyclerView.adapter = mAdapter
-
 
     }
 

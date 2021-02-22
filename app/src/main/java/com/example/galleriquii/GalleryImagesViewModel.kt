@@ -5,9 +5,9 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 
 class GalleryImagesViewModel(application: Application) : AndroidViewModel(application) {
-    lateinit var imagesUrlList: LiveData<List<String>>
+    lateinit var imagesUrlList: LiveData<List<GalleryImageModel>>
 
-    fun getUrlList(keyword: String): LiveData<List<String>> {
+    fun getGalleryImageList(keyword: String): LiveData<List<GalleryImageModel>> {
         if (!this::imagesUrlList.isInitialized) {
             imagesUrlList = GalleryImageRepository.getImagesForKeyword(keyword)
         }

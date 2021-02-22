@@ -50,7 +50,7 @@ class GalleryImageAdapter(
 
         @SuppressLint("SetTextI18n")
         fun bind(result: GalleryImageModel, context: Context) {
-            Glide.with(context).load(result.url)
+            Glide.with(context).load(result.thumbnailUrl)
                 .thumbnail(0.5f)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into((binding.itemImg))

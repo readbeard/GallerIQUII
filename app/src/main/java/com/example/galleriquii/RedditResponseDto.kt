@@ -194,7 +194,7 @@ internal class ChildrenData {
 
     @SerializedName("thumbnail")
     @Expose
-    var thumbnail: String? = null
+    var thumbnail: String = ""
 
     @SerializedName("edited")
     @Expose
@@ -422,7 +422,7 @@ internal class ChildrenData {
 
     @SerializedName("url")
     @Expose
-    var url: String? = null
+    var url: String = ""
 
     @SerializedName("subreddit_subscribers")
     @Expose
