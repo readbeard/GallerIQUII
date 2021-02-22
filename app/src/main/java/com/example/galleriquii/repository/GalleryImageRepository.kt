@@ -14,31 +14,32 @@ import retrofit2.Response
 
 object GalleryImageRepository {
     private val TAG = GalleryImageRepository::class.simpleName
-    private var galleryImageModelLiveData: MutableLiveData<List<GalleryImageModel>> = MutableLiveData()
     private var galleryIQUIIwebService: GalleryApi = AppRest.apiInstance //TODO: move this to viewmodel
 
-    fun getImagesForKeyword(keyword: String): LiveData<List<GalleryImageModel>> {
+    fun getImagesForKeyword(keyword: String, liveData: MutableLiveData<List<GalleryImageModel>>) {
         val call = galleryIQUIIwebService.retrieveImages(keyword)
-        val urlList = ArrayList<GalleryImageModel>()
+        val galleryImagesList = ArrayList<GalleryImageModel>()
         call.enqueue(object : Callback<RedditResponseDto> {
             override fun onResponse(call: Call<RedditResponseDto>, response: Response<RedditResponseDto>) {
+                if (response.body() == null) {
+                    return
+                }
                 val redditResponseDto = response.body() as RedditResponseDto
                 redditResponseDto.data?.children?.forEach {
                     if (it.childData?.isVideo == false) {
                         val thumbnailUrl = it.childData?.thumbnail
                         val url = it.childData?.url
                         if(URLUtil.isValidUrl(thumbnailUrl) && URLUtil.isValidUrl(url)) {
-                            urlList.add(GalleryImageModel(it.childData?.name?: "", url!!, thumbnailUrl!!))
+                            galleryImagesList.add(GalleryImageModel(it.childData?.name?: "", url!!, thumbnailUrl!!))
                         }
                     }
                 }
-                galleryImageModelLiveData.value = urlList
+                liveData.value = galleryImagesList
             }
             override fun onFailure(call: Call<RedditResponseDto>, t: Throwable) {
                 Log.e(TAG, t.message?: "call failed with null throwable")
             }
         })
 
-        return galleryImageModelLiveData
     }
 }
