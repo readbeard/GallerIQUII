@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
 
         mainActivityViewModel = ViewModelProvider(this).get(GalleryImagesViewModel::class.java)
 
-        mainActivityViewModel.getGalleryImageList("bottle")
+        mainActivityViewModel.getGalleryImageList("dog")
             .observe(this, Observer { galleryImageModelList ->
                 galleryImageModelList.forEach {
                     data.add(it)

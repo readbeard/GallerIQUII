@@ -15,7 +15,7 @@ class SectionsPagerAdapter(fm: FragmentManager, data: ArrayList<GalleryImageMode
     override fun getItem(position: Int): Fragment {
         // getItem is called to instantiate the fragment for the given page.
         // Return a PlaceholderFragment (defined as a static inner class below).
-        return PlaceholderFragment.newInstance(
+        return DetailedGalleryImageFragment.newInstance(
             position,
             data[position].name,
             data[position].url

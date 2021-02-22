@@ -1,20 +1,23 @@
 package com.example.galleriquii
 
-import android.graphics.drawable.Drawable
+import android.content.res.Configuration
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.core.graphics.BlendModeColorFilterCompat
+import androidx.core.graphics.BlendModeCompat
 import androidx.fragment.app.Fragment
+import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
-import com.bumptech.glide.request.target.Target
 
 
 /**
  * A placeholder fragment containing a simple view.
  */
-class PlaceholderFragment : Fragment() {
+class DetailedGalleryImageFragment : Fragment() {
     /**
      * The fragment argument representing the section number for this
      * fragment.
@@ -36,7 +39,23 @@ class PlaceholderFragment : Fragment() {
     ): View {
         val rootView: View = inflater.inflate(R.layout.fragment_gallery_image, container, false)
         val imageView: ImageView = rootView.findViewById(R.id.detail_image) as ImageView
-        Glide.with(requireActivity()).load(url).thumbnail(0.1f).into(imageView)
+        val darkModeEnabled = context?.resources?.configuration?.uiMode?.and(Configuration.UI_MODE_NIGHT_MASK)?.equals(Configuration.UI_MODE_NIGHT_YES)?: false
+
+        val circularProgressDrawable = CircularProgressDrawable(requireActivity())
+        circularProgressDrawable.strokeWidth = 10f
+        circularProgressDrawable.centerRadius = 50f
+        circularProgressDrawable.colorFilter =
+            BlendModeColorFilterCompat.createBlendModeColorFilterCompat(
+            if(darkModeEnabled) Color.WHITE else Color.BLACK, BlendModeCompat.SRC_ATOP
+            )
+        circularProgressDrawable.start()
+
+        Glide.with(requireActivity())
+            .load(url)
+            .placeholder(circularProgressDrawable)
+            .error(if (darkModeEnabled) R.drawable.ic_baseline_broken_image_24_white else R.drawable.ic_baseline_broken_image_24_black)
+            .into(imageView)
+
         return rootView
     }
 
@@ -49,8 +68,8 @@ class PlaceholderFragment : Fragment() {
          * Returns a new instance of this fragment for the given section
          * number.
          */
-        fun newInstance(sectionNumber: Int, name: String?, url: String?): PlaceholderFragment {
-            val fragment = PlaceholderFragment()
+        fun newInstance(sectionNumber: Int, name: String?, url: String?): DetailedGalleryImageFragment {
+            val fragment = DetailedGalleryImageFragment()
             val args = Bundle()
             args.putInt(ARG_SECTION_NUMBER, sectionNumber)
             args.putString(ARG_IMG_TITLE, name)
