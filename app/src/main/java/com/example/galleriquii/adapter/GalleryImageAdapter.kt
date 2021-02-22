@@ -9,9 +9,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.example.galleriquii.model.GalleryImageModel
 import com.example.galleriquii.activity.GalleryImageActivity
 import com.example.galleriquii.databinding.GalleryImageItemBinding
+import com.example.galleriquii.model.GalleryImageModel
 
 
 class GalleryImageAdapter(
@@ -37,6 +37,12 @@ class GalleryImageAdapter(
 
     override fun getItemCount(): Int {
         return items.size
+    }
+
+    fun clear() {
+        val size: Int = items.size
+        items.clear()
+        notifyItemRangeRemoved(0, size)
     }
 
     class GalleryImageViewHolder(
