@@ -3,7 +3,7 @@ package com.example.galleriquii
 import android.os.Parcel
 import android.os.Parcelable
 
-class GalleryImageModel(var name: String = "", var url: String = ""): Parcelable {
+class GalleryImageModel(var name: String = "", var url: String = "", var thumbnailUrl: String = ""): Parcelable {
 
     constructor(parcel: Parcel) : this() {
         name = parcel.readString().toString()

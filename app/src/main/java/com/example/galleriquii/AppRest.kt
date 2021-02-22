@@ -1,12 +1,9 @@
 package com.example.galleriquii
 
-import android.util.Log
 import com.google.gson.*
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.lang.reflect.Type
-
 
 object AppRest {
     private const val baseUrl = "https://www.reddit.com/"
