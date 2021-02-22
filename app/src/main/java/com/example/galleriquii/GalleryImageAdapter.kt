@@ -3,8 +3,11 @@ package com.example.galleriquii
 import android.R.attr.data
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -13,7 +16,6 @@ import com.example.galleriquii.databinding.GalleryImageItemBinding
 
 class GalleryImageAdapter(
     private val items: ArrayList<GalleryImageModel>,
-    private val onClickListener: ((String) -> Unit)?,
     private val context: Context
 ) : RecyclerView.Adapter<GalleryImageAdapter.GalleryImageViewHolder>() {
 
@@ -21,10 +23,16 @@ class GalleryImageAdapter(
         val binding =
             GalleryImageItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
-        return GalleryImageViewHolder(binding, onClickListener)
+        return GalleryImageViewHolder(binding, null)
     }
 
     override fun onBindViewHolder(holderGalleryImage: GalleryImageViewHolder, position: Int) {
+        holderGalleryImage.setOnClickListener {
+            val intent = Intent(context, GalleryImageActivity::class.java)
+            intent.putParcelableArrayListExtra("data", items)
+            intent.putExtra("pos", position)
+            context.startActivity(intent)
+        }
         holderGalleryImage.bind(items[position], context)
     }
 
@@ -34,7 +42,7 @@ class GalleryImageAdapter(
 
     class GalleryImageViewHolder(
         private val binding: GalleryImageItemBinding,
-        private val onClickListener: ((String) -> Unit)?,
+        private var onClickListener: ((View) -> Unit)?,
     ) : RecyclerView.ViewHolder(binding.root) {
 
         @SuppressLint("SetTextI18n")
@@ -44,9 +52,11 @@ class GalleryImageAdapter(
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into((binding.itemImg))
 
-            itemView.setOnClickListener {
-               //TODO: implement me
-            }
+            itemView.setOnClickListener(onClickListener)
+        }
+
+        fun setOnClickListener(listener: ((View) -> Unit)?) {
+            this.onClickListener = listener
         }
     }
 }

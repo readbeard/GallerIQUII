@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity() {
         mRecyclerView.setHasFixedSize(true) // Helps improve performance
 
 
-        val mAdapter = GalleryImageAdapter(data, null, this )
+        val mAdapter = GalleryImageAdapter(data,  this)
         mRecyclerView.adapter = mAdapter
 
         findViewById<FloatingActionButton>(R.id.fab).setOnClickListener { view ->
