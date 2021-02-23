@@ -7,8 +7,9 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object AppRest {
     private const val baseUrl = "https://www.reddit.com/"
+    private const val dateFormat = "yyyy-MM-dd HH:mm:ss"
     private var gson: Gson = GsonBuilder()
-        .setDateFormat("yyyy-MM-dd HH:mm:ss")
+        .setDateFormat(dateFormat)
         .create()
 
     var okHttpClient: OkHttpClient = OkHttpClient().newBuilder().build()

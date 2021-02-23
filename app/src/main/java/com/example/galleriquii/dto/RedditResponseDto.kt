@@ -1,4 +1,4 @@
-package com.example.galleriquii
+package com.example.galleriquii.dto
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName

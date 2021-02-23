@@ -2,7 +2,6 @@ package com.example.galleriquii.activity
 
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
@@ -10,16 +9,15 @@ import androidx.core.widget.doOnTextChanged
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.galleriquii.adapter.GalleryImageAdapter
 import com.example.galleriquii.model.GalleryImageModel
 import com.example.galleriquii.viewmodel.GalleryImagesViewModel
 import com.example.galleriquii.R
 import com.example.galleriquii.databinding.ActivityMainBinding
-import com.google.android.material.textfield.TextInputEditText
 
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var mGalleryImageAdapter: GalleryImageAdapter
     private var data: ArrayList<GalleryImageModel> = ArrayList()
     private lateinit var mainActivityBinding: ActivityMainBinding
     private lateinit var mainActivityViewModel: GalleryImagesViewModel
@@ -30,48 +28,49 @@ class MainActivity : AppCompatActivity() {
         mainActivityBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(mainActivityBinding.root)
         setSupportActionBar(findViewById(R.id.toolbar))
-        val mAdapter = GalleryImageAdapter(data, this)
+
+        mGalleryImageAdapter = GalleryImageAdapter(data, this)
 
         mainActivityViewModel = ViewModelProvider(this).get(GalleryImagesViewModel::class.java)
 
-        mainActivityViewModel.galleryImagesList
-                .observe(this, Observer { galleryImageModelList ->
-                    mAdapter.clear()
-                    galleryImageModelList.forEach {
-                        data.add(it)
-                    }
-                    mAdapter.notifyDataSetChanged()
-                })
+        initializeGalleryImagesRecyclerView()
+        initializeSearchInputEditText()
+        observeForImagesListChanges()
+    }
 
+    private fun initializeGalleryImagesRecyclerView() {
         val mRecyclerView = mainActivityBinding.recylcerViewMainActivity
-        mRecyclerView.layoutManager = GridLayoutManager(this, 3)
-        mRecyclerView.setHasFixedSize(true) // Helps improve performance
-        mRecyclerView.adapter = mAdapter
+        mRecyclerView.layoutManager = GridLayoutManager(this, RECYCLER_VIEW_SPAN_COUNT)
+        mRecyclerView.setHasFixedSize(true)
+        mRecyclerView.adapter = mGalleryImageAdapter
+    }
 
-        mainActivityBinding.textInputEditTextMainActivity.doOnTextChanged { text, start, before, count ->
+    private fun initializeSearchInputEditText() {
+        mainActivityBinding.textInputEditTextMainActivity.doOnTextChanged { text, _, _, _ ->
             if (!isSearching && text != null && text.isNotEmpty()) {
                 isSearching = true
                 Handler().postDelayed({
                     mainActivityViewModel.getGalleryImageList(text.toString())
                     isSearching = false
-                }, 500)
+                }, SEARCH_INTERVAL_MILLIS)
             }
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.menu_main, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.action_settings -> true
-            else -> super.onOptionsItemSelected(item)
-        }
+    private fun observeForImagesListChanges() {
+        mainActivityViewModel.galleryImagesList
+            .observe(this, { galleryImageModelList ->
+                mGalleryImageAdapter.clear()
+                galleryImageModelList.forEach {
+                    data.add(it)
+                }
+                mGalleryImageAdapter.notifyDataSetChanged()
+            })
     }
 
     companion object {
-        val TAG = MainActivity::class.simpleName
+        private val TAG = MainActivity::class.simpleName
+        private const val RECYCLER_VIEW_SPAN_COUNT = 3
+        private const val SEARCH_INTERVAL_MILLIS = 500L
     }
 }

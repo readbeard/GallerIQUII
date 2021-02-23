@@ -11,30 +11,19 @@ import com.example.galleriquii.adapter.SectionsPagerAdapter
 
 
 class GalleryImageActivity : AppCompatActivity() {
-
     private var mSectionsPagerAdapter: SectionsPagerAdapter? = null
-
-    var data: ArrayList<GalleryImageModel> = ArrayList()
-    var pos = 0
+    private var data: ArrayList<GalleryImageModel> = ArrayList()
+    private var pos = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_gallery_image)
 
-
-        // Create the adapter that will return a fragment for each of the three
-        // primary sections of the activity.
-
         data = intent.getParcelableArrayListExtra("data");
         pos = intent.getIntExtra("pos", 0);
 
-        // Create the adapter that will return a fragment for each of the three
-        // primary sections of the activity.
         mSectionsPagerAdapter = SectionsPagerAdapter(supportFragmentManager, data)
-        // Set up the ViewPager with the sections adapter.
-        // Set up the ViewPager with the sections adapter.
-        val mViewPager = findViewById<View>(R.id.container) as ViewPager
-        //mViewPager.setPageTransformer(true, DepthPageTransformer())
 
+        val mViewPager = findViewById<View>(R.id.container) as ViewPager
         mViewPager.adapter = mSectionsPagerAdapter
         mViewPager.currentItem = pos
 

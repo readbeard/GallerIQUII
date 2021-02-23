@@ -2,10 +2,9 @@ package com.example.galleriquii.repository
 
 import android.util.Log
 import android.webkit.URLUtil
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.galleriquii.model.GalleryImageModel
-import com.example.galleriquii.RedditResponseDto
+import com.example.galleriquii.dto.RedditResponseDto
 import com.example.galleriquii.rest.AppRest
 import com.example.galleriquii.rest.GalleryApi
 import retrofit2.Call
@@ -14,7 +13,7 @@ import retrofit2.Response
 
 object GalleryImageRepository {
     private val TAG = GalleryImageRepository::class.simpleName
-    private var galleryIQUIIwebService: GalleryApi = AppRest.apiInstance //TODO: move this to viewmodel
+    private var galleryIQUIIwebService: GalleryApi = AppRest.apiInstance
 
     fun getImagesForKeyword(keyword: String, liveData: MutableLiveData<List<GalleryImageModel>>) {
         val call = galleryIQUIIwebService.retrieveImages(keyword)

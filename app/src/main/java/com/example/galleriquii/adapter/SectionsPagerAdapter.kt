@@ -6,17 +6,10 @@ import androidx.fragment.app.FragmentPagerAdapter
 import com.example.galleriquii.model.GalleryImageModel
 import com.example.galleriquii.fragment.DetailedGalleryImageFragment
 
-
-/**
- * A [FragmentPagerAdapter] that returns a fragment corresponding to
- * one of the sections/tabs/pages.
- */
 class SectionsPagerAdapter(fm: FragmentManager, data: ArrayList<GalleryImageModel>) :
-    FragmentPagerAdapter(fm, FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+    FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
     var data: ArrayList<GalleryImageModel> = ArrayList()
     override fun getItem(position: Int): Fragment {
-        // getItem is called to instantiate the fragment for the given page.
-        // Return a PlaceholderFragment (defined as a static inner class below).
         return DetailedGalleryImageFragment.newInstance(
             position,
             data[position].name,
@@ -25,7 +18,6 @@ class SectionsPagerAdapter(fm: FragmentManager, data: ArrayList<GalleryImageMode
     }
 
     override fun getCount(): Int {
-        // Show 3 total pages.
         return data.size
     }
 
