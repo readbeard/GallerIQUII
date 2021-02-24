@@ -21,6 +21,7 @@ object GalleryImageRepository {
         call.enqueue(object : Callback<RedditResponseDto> {
             override fun onResponse(call: Call<RedditResponseDto>, response: Response<RedditResponseDto>) {
                 if (response.body() == null) {
+                    liveData.value = ArrayList()
                     return
                 }
                 val redditResponseDto = response.body() as RedditResponseDto

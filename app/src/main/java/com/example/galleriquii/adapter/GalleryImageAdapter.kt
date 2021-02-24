@@ -3,12 +3,18 @@ package com.example.galleriquii.adapter
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.graphics.BlendModeColorFilterCompat
+import androidx.core.graphics.BlendModeCompat
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.example.galleriquii.R
 import com.example.galleriquii.activity.GalleryImageActivity
 import com.example.galleriquii.databinding.GalleryImageItemBinding
 import com.example.galleriquii.model.GalleryImageModel
@@ -53,9 +59,13 @@ class GalleryImageAdapter(
 
         @SuppressLint("SetTextI18n")
         fun bind(result: GalleryImageModel, context: Context) {
+            val darkModeEnabled =
+                context.resources?.configuration?.uiMode?.and(Configuration.UI_MODE_NIGHT_MASK)
+                    ?.equals(Configuration.UI_MODE_NIGHT_YES) ?: false
             Glide.with(context).load(result.thumbnailUrl)
                 .thumbnail(0.5f)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .error(if (darkModeEnabled) R.drawable.ic_baseline_broken_image_24_white else R.drawable.ic_baseline_broken_image_24_black)
                 .into((binding.itemImg))
 
             itemView.setOnClickListener(onClickListener)

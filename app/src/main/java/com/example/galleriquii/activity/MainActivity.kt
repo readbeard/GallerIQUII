@@ -2,13 +2,14 @@ package com.example.galleriquii.activity
 
 import android.os.Bundle
 import android.os.Handler
-import android.view.Menu
-import android.view.MenuItem
+import android.view.View
+import android.widget.ProgressBar
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doOnTextChanged
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.galleriquii.adapter.GalleryImageAdapter
 import com.example.galleriquii.model.GalleryImageModel
 import com.example.galleriquii.viewmodel.GalleryImagesViewModel
@@ -21,6 +22,9 @@ class MainActivity : AppCompatActivity() {
     private var data: ArrayList<GalleryImageModel> = ArrayList()
     private lateinit var mainActivityBinding: ActivityMainBinding
     private lateinit var mainActivityViewModel: GalleryImagesViewModel
+    private lateinit var loadingProgressBar: ProgressBar
+    private lateinit var galleryImagesRecyclerView: RecyclerView
+    private lateinit var noImageFoundTextView: TextView
     private var isSearching = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,9 +33,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(mainActivityBinding.root)
         setSupportActionBar(findViewById(R.id.toolbar))
 
-        mGalleryImageAdapter = GalleryImageAdapter(data, this)
-
         mainActivityViewModel = ViewModelProvider(this).get(GalleryImagesViewModel::class.java)
+
+        loadingProgressBar = mainActivityBinding.progressBarMainActivity
+        noImageFoundTextView = mainActivityBinding.textViewMainActivityNoImageFound
 
         initializeGalleryImagesRecyclerView()
         initializeSearchInputEditText()
@@ -39,15 +44,17 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initializeGalleryImagesRecyclerView() {
-        val mRecyclerView = mainActivityBinding.recylcerViewMainActivity
-        mRecyclerView.layoutManager = GridLayoutManager(this, RECYCLER_VIEW_SPAN_COUNT)
-        mRecyclerView.setHasFixedSize(true)
-        mRecyclerView.adapter = mGalleryImageAdapter
+        galleryImagesRecyclerView = mainActivityBinding.recylcerViewMainActivity
+        galleryImagesRecyclerView.layoutManager = GridLayoutManager(this, RECYCLER_VIEW_SPAN_COUNT)
+        galleryImagesRecyclerView.setHasFixedSize(true)
+        mGalleryImageAdapter = GalleryImageAdapter(data, this)
+        galleryImagesRecyclerView.adapter = mGalleryImageAdapter
     }
 
     private fun initializeSearchInputEditText() {
         mainActivityBinding.textInputEditTextMainActivity.doOnTextChanged { text, _, _, _ ->
             if (!isSearching && text != null && text.isNotEmpty()) {
+                shouldShowLoadingSpinner(true)
                 isSearching = true
                 Handler().postDelayed({
                     mainActivityViewModel.getGalleryImageList(text.toString())
@@ -60,12 +67,33 @@ class MainActivity : AppCompatActivity() {
     private fun observeForImagesListChanges() {
         mainActivityViewModel.galleryImagesList
             .observe(this, { galleryImageModelList ->
+                shouldShowLoadingSpinner(false)
+                shouldShowEmptyImageListText(galleryImageModelList.isEmpty())
                 mGalleryImageAdapter.clear()
                 galleryImageModelList.forEach {
                     data.add(it)
                 }
                 mGalleryImageAdapter.notifyDataSetChanged()
             })
+    }
+
+    private fun shouldShowLoadingSpinner(show: Boolean) {
+        shouldShowEmptyImageListText(false)
+        if (show) {
+            loadingProgressBar.visibility = View.VISIBLE
+            galleryImagesRecyclerView.visibility = View.GONE
+        } else {
+            loadingProgressBar.visibility = View.GONE
+            galleryImagesRecyclerView.visibility = View.VISIBLE
+        }
+    }
+
+    private fun shouldShowEmptyImageListText(show: Boolean) {
+        if(show) {
+            noImageFoundTextView.visibility = View.VISIBLE
+        } else {
+            noImageFoundTextView.visibility = View.GONE
+        }
     }
 
     companion object {
