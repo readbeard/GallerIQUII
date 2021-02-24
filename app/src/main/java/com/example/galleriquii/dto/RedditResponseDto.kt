@@ -430,7 +430,7 @@ internal class ChildrenData {
 
     @SerializedName("created_utc")
     @Expose
-    var createdUtc: Int? = null
+    var createdUtc: Long? = null
 
     @SerializedName("num_crossposts")
     @Expose

@@ -10,6 +10,9 @@ import com.example.galleriquii.rest.GalleryApi
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 object GalleryImageRepository {
     private val TAG = GalleryImageRepository::class.simpleName
@@ -25,12 +28,24 @@ object GalleryImageRepository {
                     return
                 }
                 val redditResponseDto = response.body() as RedditResponseDto
+
                 redditResponseDto.data?.children?.forEach {
                     if (it.childData?.isVideo == false) {
-                        val thumbnailUrl = it.childData?.thumbnail
-                        val url = it.childData?.url
-                        if(URLUtil.isValidUrl(thumbnailUrl) && URLUtil.isValidUrl(url)) {
-                            galleryImagesList.add(GalleryImageModel(it.childData?.name?: "", url!!, thumbnailUrl!!))
+                        val childData = it.childData
+                        val childThumbnailUrl = childData?.thumbnail
+                        val childUrl = childData?.url
+                        val dateTimestamp = if (childData?.createdUtc == null) 0 else childData.createdUtc!! * 1000L
+                        if(URLUtil.isValidUrl(childThumbnailUrl) && URLUtil.isValidUrl(childUrl)) {
+                            val galleryImageModel = GalleryImageModel().apply {
+                                name = it.childData?.name
+                                url = childUrl
+                                thumbnailUrl = childThumbnailUrl
+                                authorFullname = childData?.authorFullname
+                                title = childData?.title
+                                createdUtc = SimpleDateFormat("dd MM yyyy HH:mm", Locale.getDefault()).format(Date(dateTimestamp))
+                            }
+
+                            galleryImagesList.add(galleryImageModel)
                         }
                     }
                 }
