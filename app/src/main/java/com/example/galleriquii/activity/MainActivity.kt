@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         mainActivityBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(mainActivityBinding.root)
-        setSupportActionBar(findViewById(R.id.toolbar))
+        setSupportActionBar(mainActivityBinding.toolbar)
 
         mainActivityViewModel = ViewModelProvider(this).get(GalleryImagesViewModel::class.java)
 

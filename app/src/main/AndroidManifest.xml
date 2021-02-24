@@ -12,7 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.GallerIQUII">
-        <activity android:name=".activity.GalleryImageActivity"></activity>
+        <activity android:name=".activity.GalleryImageActivity" android:theme="@style/Theme.GallerIQUII.NoActionBar"/>
         <activity
             android:name=".activity.MainActivity"
             android:label="@string/app_name"

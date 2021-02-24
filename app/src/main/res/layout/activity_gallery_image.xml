@@ -6,6 +6,23 @@
     android:layout_height="match_parent"
     tools:context=".activity.GalleryImageActivity">
 
+    <com.google.android.material.appbar.AppBarLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:id="@+id/appBarLayout_mainActivity"
+      android:theme="@style/Theme.GallerIQUII.AppBarOverlay"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+          android:id="@+id/toolbar"
+          android:layout_width="match_parent"
+          android:layout_height="?attr/actionBarSize"
+          android:background="?attr/colorPrimary"
+          app:popupTheme="@style/Theme.GallerIQUII.PopupOverlay" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/container"
         app:layout_constraintTop_toTopOf="parent"

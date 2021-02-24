@@ -69,11 +69,7 @@ class DetailedGalleryImageFragment : Fragment() {
         private const val ARG_IMG_TITLE = "image_title"
         private const val ARG_IMG_URL = "image_url"
 
-        fun newInstance(
-            sectionNumber: Int,
-            name: String?,
-            url: String?
-        ): DetailedGalleryImageFragment {
+        fun newInstance(sectionNumber: Int, name: String?, url: String?): DetailedGalleryImageFragment {
             val fragment = DetailedGalleryImageFragment()
             val args = Bundle()
             args.putInt(ARG_SECTION_NUMBER, sectionNumber)
