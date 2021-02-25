@@ -198,7 +198,7 @@ internal class ChildrenData {
 
     @SerializedName("edited")
     @Expose
-    var edited: Boolean? = null
+    var edited: Any? = null
 
     @SerializedName("author_flair_css_class")
     @Expose
