@@ -11,9 +11,11 @@ import com.example.galleriquii.model.GalleryImageModel
 import com.example.galleriquii.R
 import com.example.galleriquii.adapter.SectionsPagerAdapter
 import com.example.galleriquii.databinding.ActivityGalleryImageBinding
+import com.example.galleriquii.fragment.GalleryImageInfoFragment
 
 
 class GalleryImageActivity : AppCompatActivity() {
+    private lateinit var galleryItemViewPager: ViewPager
     private var mSectionsPagerAdapter: SectionsPagerAdapter? = null
     private var data: ArrayList<GalleryImageModel> = ArrayList()
     private var pos = 0
@@ -31,11 +33,11 @@ class GalleryImageActivity : AppCompatActivity() {
 
         mSectionsPagerAdapter = SectionsPagerAdapter(supportFragmentManager, data)
 
-        val mViewPager = binding.container
-        mViewPager.adapter = mSectionsPagerAdapter
-        mViewPager.currentItem = pos
+        galleryItemViewPager = binding.viewPager
+        galleryItemViewPager.adapter = mSectionsPagerAdapter
+        galleryItemViewPager.currentItem = pos
 
-        mViewPager.addOnPageChangeListener(object : OnPageChangeListener {
+        galleryItemViewPager.addOnPageChangeListener(object : OnPageChangeListener {
             override fun onPageScrolled(
                 position: Int,
                 positionOffset: Float,
@@ -56,12 +58,39 @@ class GalleryImageActivity : AppCompatActivity() {
         return super.onCreateOptionsMenu(menu)
     }
 
+    override fun onBackPressed() {
+        if (isInfoFragmentVisible()) {
+            galleryItemViewPager.visibility = View.VISIBLE
+        }
+        super.onBackPressed()
+    }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_info -> {
-                //TODO: start info fragment here
+                if (isInfoFragmentVisible()) {
+                    return super.onOptionsItemSelected(item)
+                }
+                val currentGalleryItem = data[pos]
+                val infoFragment = GalleryImageInfoFragment.newInstance(
+                    currentGalleryItem.name,
+                    currentGalleryItem.authorFullname,
+                    currentGalleryItem.title,
+                    currentGalleryItem.createdUtc
+                )
+                galleryItemViewPager.visibility = View.GONE
+                supportFragmentManager.beginTransaction().replace(R.id.container, infoFragment)
+                    .addToBackStack(null).commit()
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun isInfoFragmentVisible(): Boolean {
+        return supportFragmentManager.fragments.last() is GalleryImageInfoFragment
+    }
+
+    companion object {
+        private val TAG = GalleryImageActivity::class.java.simpleName
     }
 }

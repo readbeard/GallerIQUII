@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
 import android.graphics.Color
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -74,5 +75,9 @@ class GalleryImageAdapter(
         fun setOnClickListener(listener: ((View) -> Unit)?) {
             this.onClickListener = listener
         }
+    }
+
+    companion object {
+        private val TAG = GalleryImageAdapter::class.simpleName
     }
 }

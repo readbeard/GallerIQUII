@@ -2,6 +2,7 @@ package com.example.galleriquii.activity
 
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import android.view.View
 import android.widget.ProgressBar
 import android.widget.TextView

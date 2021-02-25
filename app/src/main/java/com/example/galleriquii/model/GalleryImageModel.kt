@@ -13,11 +13,19 @@ class GalleryImageModel(var name: String? = "",
     constructor(parcel: Parcel) : this() {
         name = parcel.readString().toString()
         url = parcel.readString().toString()
+        thumbnailUrl = parcel.readString().toString()
+        authorFullname = parcel.readString().toString()
+        title = parcel.readString().toString()
+        createdUtc = parcel.readString().toString()
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(name)
         parcel.writeString(url)
+        parcel.writeString(thumbnailUrl)
+        parcel.writeString(authorFullname)
+        parcel.writeString(title)
+        parcel.writeString(createdUtc)
     }
 
     override fun describeContents(): Int {
