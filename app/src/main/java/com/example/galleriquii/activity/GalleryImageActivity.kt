@@ -46,7 +46,8 @@ class GalleryImageActivity : AppCompatActivity() {
             }
 
             override fun onPageSelected(position: Int) {
-                title = data[position].name
+                pos = position
+                title = data[pos].name
             }
 
             override fun onPageScrollStateChanged(state: Int) {}
