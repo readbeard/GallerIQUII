@@ -1,8 +1,10 @@
 package com.example.galleriquii.repository
 
+import android.text.format.DateUtils
 import android.util.Log
 import android.webkit.URLUtil
 import androidx.lifecycle.MutableLiveData
+import com.example.galleriquii.dto.ChildrenData
 import com.example.galleriquii.model.GalleryImageModel
 import com.example.galleriquii.dto.RedditResponseDto
 import com.example.galleriquii.rest.AppRest
@@ -16,45 +18,52 @@ import kotlin.collections.ArrayList
 
 object GalleryImageRepository {
     private val TAG = GalleryImageRepository::class.simpleName
-    private var galleryIQUIIwebService: GalleryApi = AppRest.apiInstance
+    private const val dateFormat = "dd MM yyyy HH:mm"
+    private var galleryIQUIIWebService: GalleryApi = AppRest.apiInstance
 
     fun getImagesForKeyword(keyword: String, liveData: MutableLiveData<List<GalleryImageModel>>) {
-        val call = galleryIQUIIwebService.retrieveImages(keyword)
-        val galleryImagesList = ArrayList<GalleryImageModel>()
+        val call = galleryIQUIIWebService.retrieveImages(keyword)
         call.enqueue(object : Callback<RedditResponseDto> {
-            override fun onResponse(call: Call<RedditResponseDto>, response: Response<RedditResponseDto>) {
-                if (response.body() == null) {
-                    liveData.value = ArrayList()
-                    return
-                }
-                val redditResponseDto = response.body() as RedditResponseDto
-
+            override fun onResponse(
+                call: Call<RedditResponseDto>,
+                response: Response<RedditResponseDto>
+            ) {
+                val galleryImagesList = ArrayList<GalleryImageModel>()
+                val redditResponseDto = response.body() ?: RedditResponseDto()
                 redditResponseDto.data?.children?.forEach {
-                    if (it.childData?.isVideo == false) {
-                        val childData = it.childData
-                        val childThumbnailUrl = childData?.thumbnail
-                        val childUrl = childData?.url
-                        val dateTimestamp = if (childData?.createdUtc == null) 0 else childData.createdUtc!! * 1000L
-                        if(URLUtil.isValidUrl(childThumbnailUrl) && URLUtil.isValidUrl(childUrl)) {
-                            val galleryImageModel = GalleryImageModel().apply {
-                                name = it.childData?.name
-                                url = childUrl
-                                thumbnailUrl = childThumbnailUrl
-                                authorFullname = childData?.authorFullname
-                                title = childData?.title
-                                createdUtc = SimpleDateFormat("dd MM yyyy HH:mm", Locale.getDefault()).format(Date(dateTimestamp))
-                            }
-
-                            galleryImagesList.add(galleryImageModel)
-                        }
+                    if (it.childData != null && it.childData?.isVideo == false) {
+                        fillGalleryImageList(it.childData!!, galleryImagesList)
                     }
                 }
                 liveData.value = galleryImagesList
             }
+
             override fun onFailure(call: Call<RedditResponseDto>, t: Throwable) {
-                Log.e(TAG, t.message?: "call failed with null throwable")
+                Log.e(TAG, t.message ?: "call failed with null throwable")
             }
         })
 
+    }
+
+    private fun fillGalleryImageList(
+        childData: ChildrenData,
+        galleryImagesList: ArrayList<GalleryImageModel>
+    ) {
+        val childThumbnailUrl = childData.thumbnail
+        val childUrl = childData.url
+        val dateTimestamp = if (childData.createdUtc == null) 0 else childData.createdUtc!! * 1000L
+        if (URLUtil.isValidUrl(childThumbnailUrl) && URLUtil.isValidUrl(childUrl)) {
+            val galleryImageModel = GalleryImageModel().apply {
+                name = childData.name
+                url = childUrl
+                thumbnailUrl = childThumbnailUrl
+                authorFullname = childData.authorFullname
+                title = childData.title
+                createdUtc = SimpleDateFormat(dateFormat, Locale.getDefault()).format(
+                    Date(dateTimestamp)
+                )
+            }
+            galleryImagesList.add(galleryImageModel)
+        }
     }
 }
