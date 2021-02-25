@@ -1,8 +1,6 @@
 package com.example.galleriquii.activity
 
 import android.os.Bundle
-import android.os.Handler
-import android.util.Log
 import android.view.View
 import android.widget.ProgressBar
 import android.widget.TextView
@@ -12,10 +10,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.galleriquii.adapter.GalleryImageAdapter
+import com.example.galleriquii.databinding.ActivityMainBinding
 import com.example.galleriquii.model.GalleryImageModel
 import com.example.galleriquii.viewmodel.GalleryImagesViewModel
-import com.example.galleriquii.R
-import com.example.galleriquii.databinding.ActivityMainBinding
+import kotlinx.coroutines.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -26,7 +24,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var loadingProgressBar: ProgressBar
     private lateinit var galleryImagesRecyclerView: RecyclerView
     private lateinit var noImageFoundTextView: TextView
-    private var isSearching = false
+    private val coroutineScope: CoroutineScope = CoroutineScope(Dispatchers.Main)
+    private var searchJob: Job? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,13 +54,18 @@ class MainActivity : AppCompatActivity() {
 
     private fun initializeSearchInputEditText() {
         mainActivityBinding.textInputEditTextMainActivity.doOnTextChanged { text, _, _, _ ->
-            if (!isSearching && text != null && text.isNotEmpty()) {
-                shouldShowLoadingSpinner(true)
-                isSearching = true
-                Handler().postDelayed({
-                    mainActivityViewModel.getGalleryImageList(text.toString())
-                    isSearching = false
-                }, SEARCH_INTERVAL_MILLIS)
+            if (text != null && text.isNotEmpty()) {
+                searchJob?.cancel()
+                searchJob = coroutineScope.launch {
+                    text.let {
+                        delay(SEARCH_INTERVAL_MILLIS)
+                        if (it.isNotEmpty()) {
+                            shouldShowLoadingSpinner(true)
+                            mainActivityViewModel.getGalleryImageList(text.toString())
+                        }
+                    }
+                }
+
             }
         }
     }
