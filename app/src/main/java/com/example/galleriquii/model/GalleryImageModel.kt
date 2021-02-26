@@ -42,7 +42,7 @@ class GalleryImageModel(var name: String? = "",
         }
 
         override fun newArray(size: Int): Array<GalleryImageModel?> {
-            return Array(20) { GalleryImageModel() }
+            return Array(100) { GalleryImageModel() }
         }
 
     }

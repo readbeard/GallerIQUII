@@ -9,14 +9,16 @@ import androidx.core.widget.doOnTextChanged
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.galleriquii.NetworkStatusMonitor
 import com.example.galleriquii.adapter.GalleryImageAdapter
 import com.example.galleriquii.databinding.ActivityMainBinding
 import com.example.galleriquii.model.GalleryImageModel
 import com.example.galleriquii.viewmodel.GalleryImagesViewModel
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.*
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), NetworkStatusMonitor.NetworkStatusListener {
     private lateinit var mGalleryImageAdapter: GalleryImageAdapter
     private var data: ArrayList<GalleryImageModel> = ArrayList()
     private lateinit var mainActivityBinding: ActivityMainBinding
@@ -26,7 +28,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var noImageFoundTextView: TextView
     private val coroutineScope: CoroutineScope = CoroutineScope(Dispatchers.Main)
     private var searchJob: Job? = null
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,6 +43,9 @@ class MainActivity : AppCompatActivity() {
         initializeGalleryImagesRecyclerView()
         initializeSearchInputEditText()
         observeForImagesListChanges()
+
+        val stateMonitor = NetworkStatusMonitor()
+        stateMonitor.enable(this)
     }
 
     private fun initializeGalleryImagesRecyclerView() {
@@ -95,7 +99,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun shouldShowEmptyImageListText(show: Boolean) {
-        if(show) {
+        if (show) {
             noImageFoundTextView.visibility = View.VISIBLE
         } else {
             noImageFoundTextView.visibility = View.GONE
@@ -106,5 +110,22 @@ class MainActivity : AppCompatActivity() {
         private val TAG = MainActivity::class.simpleName
         private const val RECYCLER_VIEW_SPAN_COUNT = 3
         private const val SEARCH_INTERVAL_MILLIS = 500L
+    }
+
+    override fun onResume() {
+        NetworkStatusMonitor.networkStatusListener = this
+        super.onResume()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+    }
+
+    override fun onNetworkConnectionChanged(isConnected: Boolean) {
+        Snackbar.make(
+            mainActivityBinding.constraintLayoutMainActivityContainer,
+            "You are ${if (isConnected) "online" else "offline"}",
+            Snackbar.LENGTH_LONG
+        ).show()
     }
 }
