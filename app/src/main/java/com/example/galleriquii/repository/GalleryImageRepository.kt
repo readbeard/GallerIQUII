@@ -56,7 +56,7 @@ object GalleryImageRepository {
                 name = childData.name
                 url = childUrl
                 thumbnailUrl = childThumbnailUrl
-                authorFullname = childData.authorFullname
+                authorFullName = childData.authorFullname
                 title = childData.title
                 createdUtc = SimpleDateFormat(dateFormat, Locale.getDefault()).format(
                     Date(dateTimestamp)

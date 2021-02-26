@@ -7,7 +7,7 @@ class GalleryImageModel(
     var name: String? = "",
     var url: String? = "",
     var thumbnailUrl: String? = "",
-    var authorFullname: String? = "",
+    var authorFullName: String? = "",
     var title: String? = "",
     var createdUtc: String? = ""
 ) : Parcelable {
@@ -16,7 +16,7 @@ class GalleryImageModel(
         name = parcel.readString().toString()
         url = parcel.readString().toString()
         thumbnailUrl = parcel.readString().toString()
-        authorFullname = parcel.readString().toString()
+        authorFullName = parcel.readString().toString()
         title = parcel.readString().toString()
         createdUtc = parcel.readString().toString()
     }
@@ -25,7 +25,7 @@ class GalleryImageModel(
         parcel.writeString(name)
         parcel.writeString(url)
         parcel.writeString(thumbnailUrl)
-        parcel.writeString(authorFullname)
+        parcel.writeString(authorFullName)
         parcel.writeString(title)
         parcel.writeString(createdUtc)
     }
@@ -35,7 +35,7 @@ class GalleryImageModel(
     }
 
     override fun toString(): String {
-        return "GalleryImageModel(name=$name, url=$url, thumbnailUrl=$thumbnailUrl, authorFullname=$authorFullname, title=$title, createdUtc=$createdUtc)"
+        return "GalleryImageModel(name=$name, url=$url, thumbnailUrl=$thumbnailUrl, authorFullname=$authorFullName, title=$title, createdUtc=$createdUtc)"
     }
 
     companion object CREATOR : Parcelable.Creator<GalleryImageModel> {
