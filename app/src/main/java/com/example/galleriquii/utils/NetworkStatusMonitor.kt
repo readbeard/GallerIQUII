@@ -1,4 +1,4 @@
-package com.example.galleriquii
+package com.example.galleriquii.utils
 
 import android.content.Context
 import android.net.ConnectivityManager

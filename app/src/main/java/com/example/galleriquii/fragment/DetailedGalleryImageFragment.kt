@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
 import com.example.galleriquii.R
-import com.example.galleriquii.TouchImageView
+import com.example.galleriquii.utils.TouchImageView
 import com.example.galleriquii.databinding.FragmentGalleryImageBinding
 
 class DetailedGalleryImageFragment : Fragment() {

@@ -9,7 +9,7 @@ import androidx.core.widget.doOnTextChanged
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.galleriquii.NetworkStatusMonitor
+import com.example.galleriquii.utils.NetworkStatusMonitor
 import com.example.galleriquii.adapter.GalleryImageAdapter
 import com.example.galleriquii.databinding.ActivityMainBinding
 import com.example.galleriquii.model.GalleryImageModel

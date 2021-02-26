@@ -1,4 +1,4 @@
-<com.example.galleriquii.TouchImageView
+<com.example.galleriquii.utils.TouchImageView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/detail_image"
