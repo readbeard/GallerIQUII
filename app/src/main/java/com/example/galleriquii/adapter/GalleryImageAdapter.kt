@@ -30,8 +30,8 @@ class GalleryImageAdapter(
     override fun onBindViewHolder(holderGalleryImage: GalleryImageViewHolder, position: Int) {
         holderGalleryImage.setOnClickListener {
             val intent = Intent(context, GalleryImageActivity::class.java)
-            intent.putParcelableArrayListExtra("data", items)
-            intent.putExtra("pos", position)
+            intent.putParcelableArrayListExtra(context.getString(R.string.intent_imagesListExtra_key), items)
+            intent.putExtra(context.getString(R.string.intent_position_key), position)
             context.startActivity(intent)
         }
         holderGalleryImage.bind(items[position], context)

@@ -27,8 +27,8 @@ class GalleryImageActivity : AppCompatActivity() {
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
 
-        data = intent.getParcelableArrayListExtra("data")
-        pos = intent.getIntExtra("pos", 0)
+        data = intent.getParcelableArrayListExtra(getString(R.string.intent_imagesListExtra_key))
+        pos = intent.getIntExtra(getString(R.string.intent_position_key), 0)
         title = data[pos].name
 
         mSectionsPagerAdapter = SectionsPagerAdapter(supportFragmentManager, data)
@@ -75,7 +75,7 @@ class GalleryImageActivity : AppCompatActivity() {
                 val currentGalleryItem = data[pos]
                 val infoFragment = GalleryImageInfoFragment.newInstance(
                     currentGalleryItem.name,
-                    currentGalleryItem.authorFullname,
+                    currentGalleryItem.authorFullName,
                     currentGalleryItem.title,
                     currentGalleryItem.createdUtc
                 )
