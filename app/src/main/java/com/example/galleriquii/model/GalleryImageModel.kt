@@ -3,12 +3,14 @@ package com.example.galleriquii.model
 import android.os.Parcel
 import android.os.Parcelable
 
-class GalleryImageModel(var name: String? = "",
-                        var url: String? = "",
-                        var thumbnailUrl: String? = "",
-                        var authorFullname: String? = "",
-                        var title: String? = "",
-                        var createdUtc: String? = ""): Parcelable {
+class GalleryImageModel(
+    var name: String? = "",
+    var url: String? = "",
+    var thumbnailUrl: String? = "",
+    var authorFullname: String? = "",
+    var title: String? = "",
+    var createdUtc: String? = ""
+) : Parcelable {
 
     constructor(parcel: Parcel) : this() {
         name = parcel.readString().toString()

@@ -117,10 +117,6 @@ class MainActivity : AppCompatActivity(), NetworkStatusMonitor.NetworkStatusList
         super.onResume()
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-    }
-
     override fun onNetworkConnectionChanged(isConnected: Boolean) {
         Snackbar.make(
             mainActivityBinding.constraintLayoutMainActivityContainer,

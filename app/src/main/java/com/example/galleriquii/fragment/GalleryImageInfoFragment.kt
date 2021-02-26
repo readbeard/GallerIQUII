@@ -16,10 +16,14 @@ class GalleryImageInfoFragment : PreferenceFragmentCompat() {
         setPreferencesFromResource(R.xml.root_preferences, rootKey)
 
         arguments.let {
-            preferenceManager.findPreference<EditTextPreference>(NAME)?.summary = it?.getString(NAME)
-            preferenceManager.findPreference<EditTextPreference>(AUTHOR)?.summary = it?.getString(AUTHOR)
-            preferenceManager.findPreference<EditTextPreference>(TITLE)?.summary = it?.getString(TITLE)
-            preferenceManager.findPreference<EditTextPreference>(CREATION_DATE)?.summary = it?.getString(CREATION_DATE)
+            preferenceManager.findPreference<EditTextPreference>(NAME)?.summary =
+                it?.getString(NAME)
+            preferenceManager.findPreference<EditTextPreference>(AUTHOR)?.summary =
+                it?.getString(AUTHOR)
+            preferenceManager.findPreference<EditTextPreference>(TITLE)?.summary =
+                it?.getString(TITLE)
+            preferenceManager.findPreference<EditTextPreference>(CREATION_DATE)?.summary =
+                it?.getString(CREATION_DATE)
         }
 
     }

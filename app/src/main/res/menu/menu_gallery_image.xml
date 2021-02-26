@@ -1,11 +1,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:app="http://schemas.android.com/apk/res-auto"
-  xmlns:tools="http://schemas.android.com/tools"
-  tools:context="com.example.galleriquii.activity.MainActivity">
-  <item
-    android:id="@+id/action_info"
-    android:orderInCategory="100"
-    android:title="Info"
-    android:icon="@drawable/ic_baseline_info_24"
-    app:showAsAction="ifRoom|never" />
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.galleriquii.activity.MainActivity">
+    <item
+        android:id="@+id/action_info"
+        android:icon="@drawable/ic_baseline_info_24"
+        android:orderInCategory="100"
+        android:title="Info"
+        app:showAsAction="ifRoom|never" />
 </menu>

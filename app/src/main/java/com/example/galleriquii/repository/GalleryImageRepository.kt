@@ -1,12 +1,11 @@
 package com.example.galleriquii.repository
 
-import android.text.format.DateUtils
 import android.util.Log
 import android.webkit.URLUtil
 import androidx.lifecycle.MutableLiveData
 import com.example.galleriquii.dto.ChildrenData
-import com.example.galleriquii.model.GalleryImageModel
 import com.example.galleriquii.dto.RedditResponseDto
+import com.example.galleriquii.model.GalleryImageModel
 import com.example.galleriquii.rest.AppRest
 import com.example.galleriquii.rest.GalleryApi
 import retrofit2.Call
