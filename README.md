@@ -36,4 +36,4 @@ GallerIQUII depends on a very short list of libraries, which are very spread and
 [GSON](https://github.com/google/gson) → Json serialization/deserialization
 
 ## Requirements 📜
-GallerIQUII requires to have at least Android 5.0 Lollpop (which maps to Api level 21)
+GallerIQUII requires you to have at least Android 5.0 Lollipop (which maps to Api level 21)
